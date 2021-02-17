@@ -1,0 +1,32 @@
+import app from 'firebase/app';
+import 'firebase/auth';
+
+const config = {
+    apiKey: "AIzaSyDsWFICvUYKrsIV0RqVs-JEqWsHivA5_kY",
+    authDomain: "picsou-c0695.firebaseapp.com",
+    projectId: "picsou-c0695",
+    storageBucket: "picsou-c0695.appspot.com",
+    messagingSenderId: "636453728958",
+    appId: "1:636453728958:web:1259576baf144226ada4ef"
+};
+
+class Firebase {
+    constructor() {
+        app.initializeApp(config);
+        this.auth = app.auth();
+    }
+
+    // Register
+    signupUser = (email, password) =>
+    this.auth.createUserWithEmailAndPassword(email, password);
+
+    // Login
+    loginUser = (email, password) =>
+    this.auth.signInWithEmailAndPassword(email, password);
+
+    // Logout
+    logoutUser = () =>
+    this.auth.signOut();
+}
+
+export default Firebase;
