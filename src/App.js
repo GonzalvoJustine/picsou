@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import logo from './images/bear.jpg';
 import './style/App.scss';
-import {BrowserRouter as Router, NavLink, Link, Route, Switch, useParams} from "react-router-dom";
+import {BrowserRouter as Router, NavLink, Link, Route, Switch, useParams, useHistory } from "react-router-dom";
 import {FirebaseContext} from './components/firebase';
 
 function App() {
@@ -171,6 +171,7 @@ function Login() {
                 </div>
                 <button type="submit" className="btn btn-dark float-right">Se connecter</button>
             </form>
+            <NavLink to="/inscription" className="link">Pas inscrit? Inscrivez-vous.</NavLink>
         </div>
     )
 }
@@ -194,6 +195,7 @@ function Register() {
 
     const [loginData, setLoginData] = React.useState(data);
     const [error, setError] = React.useState('');
+    let history = useHistory();
 
     const { lastname, firstname, email, password, confirmPassword } = loginData;
 
@@ -230,6 +232,7 @@ function Register() {
                     <input onChange={handleChange} type="password" className="form-control" id="confirmPassword" value={confirmPassword} required/>
                 </div>
                 {btn}
+                <NavLink to="/connexion" className="link">Déjà inscrit? Connectez-vous.</NavLink>
             </form>
         </div>
     )
@@ -249,6 +252,7 @@ function Register() {
         firebase.signupUser(email, password)
         .then(user => {
             setLoginData({... data});
+            history.push('/mon-compte');
         })
         .catch(error => {
             setError(error);
