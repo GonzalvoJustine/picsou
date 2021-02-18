@@ -319,6 +319,11 @@ function Register() {
 
 function Logout() {
 
+    return (
+        <div>
+            Bubu
+        </div>
+    )
 }
 
 export default App;
