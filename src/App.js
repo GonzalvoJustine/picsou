@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style/App.scss';
-import {BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './components/toggleDarkOrLight/theme';
 import { GlobalStyles } from './components/toggleDarkOrLight/global';
