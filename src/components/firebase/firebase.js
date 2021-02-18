@@ -27,6 +27,13 @@ class Firebase {
     // Logout
     logoutUser = () =>
     this.auth.signOut();
+
+    // Fetch user
+    getUserState() {
+        return new Promise(resolve => {
+            this.auth.onAuthStateChanged(resolve);
+        });
+    }
 }
 
 export default Firebase;
