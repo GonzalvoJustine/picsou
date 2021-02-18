@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import logo from './images/bear.jpg';
 import './style/App.scss';
-import {BrowserRouter as Router, NavLink, Link, Route, Switch, useParams, useHistory } from "react-router-dom";
+import {BrowserRouter as Router, NavLink, Route, Switch, useHistory } from "react-router-dom";
 import {FirebaseContext} from './components/firebase';
 
 function App() {
@@ -295,7 +295,7 @@ function Register() {
 
     function handleChange(event) {
         setLoginData({
-            ... loginData,
+            ...loginData,
             [event.target.id]: event.target.value,
         });
     }
@@ -307,12 +307,12 @@ function Register() {
 
         firebase.signupUser(email, password)
         .then(user => {
-            setLoginData({... data});
+            setLoginData({ ...data });
             history.push('/mon-compte');
         })
         .catch(error => {
             setError(error);
-            setLoginData({... data});
+            setLoginData({ ...data });
         })
     }
 }
