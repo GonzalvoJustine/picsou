@@ -10,8 +10,9 @@ function App() {
 
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-
-              <img src={logo} alt="logo" width="150" height="115"/>
+              <NavLink to='/' className="nav-link" exact>
+                <img src={logo} alt="logo" width="150" height="115"/>
+              </NavLink>
 
               <button className="navbar-toggler" type="button" data-toggle="collapse"
                       data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -39,6 +40,9 @@ function App() {
                       <button type="button" className="btn btn-dark register">
                           <NavLink to="/inscription">S'inscrire</NavLink>
                       </button>
+                      <button type="button" className="btn btn-dark logout">
+                          <NavLink to="/deconnexion">Déconnexion</NavLink>
+                      </button>
                   </div>
 
               </div>
@@ -60,6 +64,9 @@ function App() {
               </Route>
               <Route path='/inscription'>
                   <Register/>
+              </Route>
+              <Route path='/deconnexion'>
+                  <Logout/>
               </Route>
           </Switch>
       </Router>
@@ -157,23 +164,72 @@ function Account() {
  * @constructor
  */
 function Login() {
+
+    const firebase = useContext(FirebaseContext);
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [btn, setBtn] = React.useState(false);
+    const [error, setError] = React.useState('');
+
+    let history = useHistory();
+
+    // Gestion des erreurs
+    const isErrorMessage = error !== '' && <span>{error.message}</span>
+
+    React.useEffect(() => {
+        if (password.length > 5 && email !== '') {
+            setBtn(true);
+        } else {
+            setBtn(false);
+        }
+    }, [password, email, btn])
+
     return (
         <div className="container">
             <h1 className="my-5">Connexion</h1>
-            <form>
+            {isErrorMessage}
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Email : </label>
-                    <input type="email" className="form-control"/>
+                    <input onChange={handleEmail} type="email" className="form-control" id="email" value={email} required/>
                 </div>
                 <div className="form-group">
                     <label>Mot de passe : </label>
-                    <input type="password" className="form-control"/>
+                    <input onChange={handlePassword} type="password" className="form-control" id="password" value={password} required/>
                 </div>
-                <button type="submit" className="btn btn-dark float-right">Se connecter</button>
+                {btn
+                    ? <button type="submit" className="btn btn-dark float-right">Se connecter</button>
+                    : <button disabled className="btn btn-dark float-right">Se connecter</button>
+                }
             </form>
-            <NavLink to="/inscription" className="link">Pas inscrit? Inscrivez-vous.</NavLink>
+            <NavLink to="/inscription" className="link">Nouveau sur Picsou ? Inscrivez-vous maintenant.</NavLink>
         </div>
     )
+
+    function handleEmail(event) {
+        setEmail(event.target.value);
+    }
+
+    function handlePassword(event) {
+        setPassword(event.target.value);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        firebase.loginUser(email, password)
+        .then(user => {
+            setEmail('');
+            setPassword('');
+            history.push('/mon-compte');
+        })
+        .catch(error => {
+            setError(error);
+            setEmail('');
+            setPassword('');
+        });
+    }
 }
 
 /**
@@ -259,6 +315,10 @@ function Register() {
             setLoginData({... data});
         })
     }
+}
+
+function Logout() {
+
 }
 
 export default App;
