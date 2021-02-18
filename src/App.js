@@ -1,7 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext } from 'react';
 import './style/App.scss';
 import {BrowserRouter as Router, NavLink, Route, Switch, useHistory } from "react-router-dom";
-import {FirebaseContext} from './components/firebase';
 import Nav from './components/Nav';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -125,22 +124,8 @@ function Account() {
  */
 function AccountManager() {
 
-    const firebase = useContext(FirebaseContext);
-
     const [userSession, setUserSession] = React.useState(null);
 
-    let history = useHistory();
-
-    React.useEffect(() => {
-        let listener = firebase.auth.onAuthStateChanged(user => {
-            user ? setUserSession(user) : history.push('/');
-        })
-
-        return () => {
-            listener();
-        };
-
-    }, [])
 
     return userSession === null ? (
         <div>
