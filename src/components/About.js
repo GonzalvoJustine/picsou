@@ -1,7 +1,8 @@
 import React from 'react';
 
 /**
- * Page À Propos
+ * Page "À Propos"
+ * Page History of the application
  * @returns {JSX.Element}
  * @constructor
  */

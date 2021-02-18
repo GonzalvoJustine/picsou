@@ -4,6 +4,12 @@ import ToggleContainer from './styled';
 import { ReactComponent as MoonIcon } from '../../icons/bear-side-view-silhouette.svg';
 import { ReactComponent as SunIcon } from '../../icons/bear.svg';
 
+/**
+ * Create Toggle
+ * @param toggleTheme
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Toggle = ({ toggleTheme }) => {
     return (
         <ToggleContainer onClick={toggleTheme} >
@@ -13,6 +19,7 @@ const Toggle = ({ toggleTheme }) => {
     );
 };
 
+// Types Props
 Toggle.propTypes = {
     theme: string.isRequired,
     toggleTheme: func.isRequired,

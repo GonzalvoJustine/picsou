@@ -23,8 +23,10 @@ import './icons/bear.png';
  */
 function App() {
 
+    // Initialization theme Dark Toggle
     const [theme, toggleTheme, componentMounted] = useDarkMode();
 
+    // Display Light or Dark theme
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
     if (!componentMounted) {
@@ -33,9 +35,7 @@ function App() {
 
     return (
       <Router>
-
           <Nav/>
-
           <Switch>
               <Route path='/' exact>
                   <Home/>

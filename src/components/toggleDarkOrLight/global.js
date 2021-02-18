@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
+/**
+ * Style global Toggle page
+ * @type {GlobalStyleComponent<{readonly theme?: *}, DefaultTheme>}
+ */
 export const GlobalStyles = createGlobalStyle`
   *,
   *::after,

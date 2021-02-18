@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+/**
+ * Style Button Toggle
+ * @type {StyledComponent<"button", AnyIfEmpty<DefaultTheme>, {}, never>}
+ */
 const ToggleContainer = styled.button`
   background: ${({ theme }) => theme.gradient};
   border: 2px solid ${({ theme }) => theme.toggleBorder};

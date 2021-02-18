@@ -1,3 +1,5 @@
+// Style Button exact
+
 export const lightTheme = {
     body: '#fff',
     text: '#363537',

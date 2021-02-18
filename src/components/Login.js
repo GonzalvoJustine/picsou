@@ -9,18 +9,26 @@ import {FirebaseContext} from './firebase';
  */
 function Login() {
 
+    // Initialization
     const firebase = useContext(FirebaseContext);
 
+    // Initialization informations login of user
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+
+    // Initialization button login form
     const [btn, setBtn] = React.useState(false);
+
+    // Initialization error message
     const [error, setError] = React.useState('');
 
+    // Initialization of History for redirection
     let history = useHistory();
 
-    // Gestion des erreurs
+    // Manager error
     const isErrorMessage = error !== '' && <span>{error.message}</span>
 
+    // Manager error password, display true or false btn
     React.useEffect(() => {
         if (password.length > 5 && email !== '') {
             setBtn(true);
@@ -51,14 +59,28 @@ function Login() {
         </div>
     )
 
+    /**
+     * Update Email with setEmail
+     * @param event
+     */
     function handleEmail(event) {
         setEmail(event.target.value);
     }
 
+    /**
+     * Update Password with setPassword
+     * @param event
+     */
     function handlePassword(event) {
         setPassword(event.target.value);
     }
 
+    /**
+     * Manager Submit Form
+     * If user log is true => redirection and changed nav
+     * Else user log is false => message error
+     * @param event
+     */
     function handleSubmit(event) {
         event.preventDefault();
 

@@ -2,7 +2,8 @@ import React from 'react';
 import SidebarLeft from "./SidebarLeft";
 
 /**
- * Page Mon compte
+ * Page "Mon compte"
+ * Add Sidebar Left with the profil user
  * @returns {JSX.Element}
  * @constructor
  */

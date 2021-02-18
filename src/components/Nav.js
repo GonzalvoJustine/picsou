@@ -13,12 +13,13 @@ function Nav() {
     // Initialization
     const firebase = useContext(FirebaseContext);
 
+    // Initialization userState and setUserState => null
     const [userState, setUserState] = React.useState(null);
-    console.log(userState);
 
+    // Initialization of History for redirection
     let history = useHistory();
-    console.log(useHistory);
 
+    // Get informations user
     React.useEffect(() => {
         firebase.getUserState().then(user => {
             if (user) {
@@ -32,8 +33,13 @@ function Nav() {
      * @constructor
      */
     function Logout() {
+        // Logout user
         firebase.logoutUser();
+
+        // Update user => null
         setUserState(null);
+
+        // Redirection
         history.push("/");
     }
 

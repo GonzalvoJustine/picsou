@@ -9,8 +9,10 @@ import {FirebaseContext} from './firebase';
  */
 function Register() {
 
+    // Initialization
     const firebase = useContext(FirebaseContext);
 
+    // Initialization user form
     const data = {
         lastname: '',
         firstname: '',
@@ -19,17 +21,23 @@ function Register() {
         confirmPassword: ''
     }
 
+    // Initialization loginData and setLoginData => data (user)
     const [loginData, setLoginData] = React.useState(data);
+
+    // Initialization error message
     const [error, setError] = React.useState('');
+
+    // Initialization of History for redirection
     let history = useHistory();
 
     const { lastname, firstname, email, password, confirmPassword } = loginData;
 
+    // Manager error password, display true or false btn
     const btn = lastname === '' || firstname === '' || email === '' || password === '' || password !== confirmPassword
         ? <button disabled className="btn btn-dark float-right">S'inscrire</button>
         : <button type="submit" className="btn btn-dark float-right">S'inscrire</button>
 
-    // Gestion des erreurs
+    // Manager error
     const isErrorMessage = error !== '' && <span>{error.message}</span>
 
     return (
@@ -63,6 +71,10 @@ function Register() {
         </div>
     )
 
+    /**
+     * Update global input value
+     * @param event
+     */
     function handleChange(event) {
         setLoginData({
             ...loginData,
@@ -70,6 +82,12 @@ function Register() {
         });
     }
 
+    /**
+     * Manager Submit Form
+     * If user log is true => redirection and changed nav
+     * Else user log is false => message error
+     * @param event
+     */
     function handleSubmit(event) {
         event.preventDefault();
 

@@ -1,7 +1,8 @@
 import React from 'react';
 
 /**
- * Page de gestionnaire de dépense
+ * Page "Gestionnaire de dépense"
+ * Created list of courses
  * @constructor
  */
 function AccountManager() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Page Accueil
+ * Page "Accueil"
  * @returns {JSX.Element}
  * @constructor
  */

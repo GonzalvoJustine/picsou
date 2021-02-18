@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react';
+
+/**
+ * Choose between light or dark theme
+ * Button Toggle Style
+ * @returns {[string, toggleTheme, boolean]}
+ */
 export const useDarkMode = () => {
     const [theme, setTheme] = useState('light');
     const [componentMounted, setComponentMounted] = useState(false);
