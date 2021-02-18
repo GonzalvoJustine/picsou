@@ -9,6 +9,8 @@ import logo from "../images/bear.jpg";
  * @constructor
  */
 function Nav() {
+
+    // Initialization
     const firebase = useContext(FirebaseContext);
 
     const [userState, setUserState] = React.useState(null);
@@ -25,33 +27,70 @@ function Nav() {
         })
     })
 
+    /**
+     * Manager button logout and redirection home
+     * @constructor
+     */
     function Logout() {
         firebase.logoutUser();
         setUserState(null);
         history.push("/");
     }
 
+    // Display buttons login, register and logout if login or logout
     let buttons;
-    if ( userState !== null ) {
-        buttons = (
-            <div>
-                <button type="button" className="btn btn-dark logout" onClick={Logout}>
-                    <NavLink to="/deconnexion">Déconnexion</NavLink>
-                </button>
-            </div>
-        )
-    } else {
-        buttons = (
-            <div>
-                <button type="button" className="btn btn-dark login">
-                    <NavLink to="/connexion">Connexion</NavLink>
-                </button>
-                <button type="button" className="btn btn-dark register">
-                    <NavLink to="/inscription">S'inscrire</NavLink>
-                </button>
-            </div>
-        )
-    }
+        if ( userState !== null ) {
+            buttons = (
+                <div className="d-flex flex-column flex-lg-row bd-highlight mb-3">
+                    <button type="button" className="btn btn-dark login" onClick={Logout}>
+                        <NavLink to="/deconnexion">Déconnexion</NavLink>
+                    </button>
+                </div>
+            )
+        } else {
+            buttons = (
+                <div className="d-flex flex-column flex-lg-row bd-highlight mb-3">
+                    <button type="button" className="btn btn-dark login">
+                        <NavLink to="/connexion">Connexion</NavLink>
+                    </button>
+                    <button type="button" className="btn btn-dark register">
+                        <NavLink to="/inscription">S'inscrire</NavLink>
+                    </button>
+                </div>
+            )
+        }
+
+    // Display links if login or logout
+    let links;
+        if ( userState !== null ) {
+            links = (
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <NavLink to='/' className="nav-link" exact>Accueil</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/mon-compte" className="nav-link">Mon compte</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/mes-depenses" className="nav-link">Mes dépenses</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/a-propos" className="nav-link">À propos</NavLink>
+                    </li>
+                </ul>
+            )
+        } else {
+            links = (
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <NavLink to='/' className="nav-link" exact>Accueil</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/a-propos" className="nav-link">À propos</NavLink>
+                    </li>
+                </ul>
+            )
+        }
 
     return (
         <div>
@@ -68,25 +107,8 @@ function Nav() {
                     </button>
 
                     <div className="collapse navbar-collapse ml-lg-5" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <NavLink to='/' className="nav-link" exact>Accueil</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/mon-compte" className="nav-link">Mon compte</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/mes-depenses" className="nav-link">Mes dépenses</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/a-propos" className="nav-link">À propos</NavLink>
-                            </li>
-                        </ul>
-
-                        <div className="d-flex flex-column flex-lg-row bd-highlight mb-3">
-                            {buttons}
-                        </div>
-
+                        {links}
+                        {buttons}
                     </div>
                 </div>
             </nav>

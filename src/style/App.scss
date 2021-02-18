@@ -1,6 +1,6 @@
 $primary: #000;
 $secondary: #fff;
-$grey: grey;
+$grey: #363537;
 
 // Layout
 //----------------------------------------------------------------------------------------------------------------------
@@ -23,6 +23,10 @@ nav {
       margin-bottom: 0;
     }
   }
+  .logout {
+    display: flex;
+    justify-content: center;
+  }
   a {
     color: $secondary;
     text-align: center;
@@ -41,5 +45,14 @@ nav {
   &:hover {
     color: $primary;
     text-decoration: none;
+  }
+}
+
+// Sidebar Page My Account
+//----------------------------------------------------------------------------------------------------------------------
+.color-sidebar {
+  color: $primary;
+  &:hover {
+    color: $grey;
   }
 }

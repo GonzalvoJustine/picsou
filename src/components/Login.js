@@ -63,16 +63,16 @@ function Login() {
         event.preventDefault();
 
         firebase.loginUser(email, password)
-            .then(user => {
-                setEmail('');
-                setPassword('');
-                history.push('/mon-compte');
-            })
-            .catch(error => {
-                setError(error);
-                setEmail('');
-                setPassword('');
-            });
+        .then(user => {
+            setEmail('');
+            setPassword('');
+            history.push('/');
+        })
+        .catch(error => {
+            setError(error);
+            setEmail('');
+            setPassword('');
+        });
     }
 }
 
