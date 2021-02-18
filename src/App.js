@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './style/App.scss';
-import {BrowserRouter as Router, NavLink, Route, Switch, useHistory } from "react-router-dom";
+import {BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
 import Nav from './components/Nav';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -124,15 +124,7 @@ function Account() {
  */
 function AccountManager() {
 
-    const [userSession, setUserSession] = React.useState(null);
-
-
-    return userSession === null ? (
-        <div>
-            <div></div>
-            <p>Loading ...</p>
-        </div>
-    ) : (
+    return (
         <div>
             Bubu
         </div>
