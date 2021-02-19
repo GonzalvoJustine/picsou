@@ -14,7 +14,6 @@ function Account () {
 
   const [userSession, setUserSession] = useState(null);
   const [userData, setUserData] = useState({});
-  console.log(userData);
 
   // Initialization of History for redirection
   const history = useHistory();
@@ -44,9 +43,15 @@ function Account () {
   return (
     <div className="container">
       <h1 className="my-5">Mon Compte</h1>
-      <SidebarLeft userData={userData}/>
+      <SidebarLeft userData={userData} updateStateUserData={updateStateUserData}/>
     </div>
   );
+  function updateStateUserData (field, value) {
+    setUserData({
+      ...userData,
+      [field]: value
+    });
+  }
 }
 
 export default Account;
