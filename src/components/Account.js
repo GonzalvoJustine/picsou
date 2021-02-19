@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import SidebarLeft from './SidebarLeft';
+import { FirebaseContext } from './config';
+import { useHistory } from 'react-router-dom';
 
 /**
  * Page "Mon compte"
@@ -8,10 +10,41 @@ import SidebarLeft from './SidebarLeft';
  * @constructor
  */
 function Account () {
+  const firebase = useContext(FirebaseContext);
+
+  const [userSession, setUserSession] = useState(null);
+  const [userData, setUserData] = useState({});
+  console.log(userData);
+
+  // Initialization of History for redirection
+  const history = useHistory();
+
+  React.useEffect(() => {
+    const listener = firebase.auth.onAuthStateChanged(user => {
+      user ? setUserSession(user) : history.push('/');
+    });
+
+    if (userSession !== null) {
+      firebase.user(userSession.uid)
+        .get()
+        .then(doc => {
+          if (doc && doc.exists) {
+            const myData = doc.data();
+            setUserData(myData);
+          }
+        })
+        .catch(error => {
+          return error;
+        });
+    }
+    return () => {
+      listener();
+    };
+  }, [userSession]);
   return (
     <div className="container">
       <h1 className="my-5">Mon Compte</h1>
-      <SidebarLeft/>
+      <SidebarLeft userData={userData}/>
     </div>
   );
 }

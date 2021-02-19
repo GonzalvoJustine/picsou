@@ -1,73 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import { object } from 'prop-types';
 
-function SidebarLeft () {
-  /**
-   * Create routes
-   * Manager sidebar link and content
-   * @type {({path: string, sidebar: (function()), exact: boolean, main: (function())}|{path: string,
-   * sidebar: (function()), main: (function())})[]}
-   */
-  const routes = [
-    {
-      path: '/mon-compte/mes-informations',
-      exact: true,
-      sidebar: function information () {
-        return (
-          <div></div>
-        );
-      },
-      main: function informations () {
-        return (
-          <div>
-            <h2>Mes informations</h2>
-            <p>Nom : Test</p>
-            <p>Prénom : Bubu</p>
-            <h3>Description : </h3>
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-              literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-              and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
-              comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by
-              Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
-              The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.
-            </p>
-          </div>
-        );
-      }
-    },
-    {
-      path: '/mon-compte/ma-photo',
-      sidebar: function photo () {
-        return (
-          <div></div>
-        );
-      },
-      main: function photos () {
-        return (
-          <h2>Ma photo</h2>
-        );
-      }
-    }
-  ];
+class SidebarLeft extends Component {
+  render (props) {
+    const { lastname } = this.props.userData;
+    const { firstname } = this.props.userData;
 
-  return (
-    <Router>
-      <div style={{ display: 'flex' }}>
-        <div
-          style={{
-            padding: '10px',
-            width: '40%',
-            background: '#f0f0f0'
-          }}
-        >
+    /**
+     * Create routes
+     * Manager sidebar link and content
+     * @type {({path: string, sidebar: (function()), exact: boolean, main: (function())}|{path: string,
+     * sidebar: (function()), main: (function())})[]}
+     */
+    const routes = [
+      {
+        path: '/mon-compte/mes-informations',
+        exact: true,
+        sidebar: function information () {
+          return (
+            <div></div>
+          );
+        },
+        main: function informations () {
+          console.log(props);
+          return (
+            <div>
+              <h2>Mes informations</h2>
+              <p>Nom : {lastname}</p>
+              <p>Prénom : {firstname}</p>
+              <h3>Description : </h3>
+              <p>
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+                College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+                and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
+                comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by
+                Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.
+              </p>
+            </div>
+          );
+        }
+      },
+      {
+        path: '/mon-compte/ma-photo',
+        sidebar: function photo () {
+          return (
+            <div></div>
+          );
+        },
+        main: function photos () {
+          return (
+            <h2>Ma photo</h2>
+          );
+        }
+      }
+    ];
+
+    return (
+      <Router>
+        <div style={{ display: 'flex' }}>
+          <div
+            style={{
+              padding: '10px',
+              width: '40%',
+              background: '#f0f0f0'
+            }}
+          >
             <ul style={{ listStyleType: 'none', padding: 0 }}>
               <li>
-                  <NavLink to="/mon-compte/mes-informations" className="nav-link color-sidebar">Mes informations</NavLink>
+                <NavLink to="/mon-compte/mes-informations" className="nav-link color-sidebar">Mes informations</NavLink>
               </li>
               <li>
-                  <NavLink to="/mon-compte/ma-photo" className="nav-link color-sidebar">Ma photo</NavLink>
+                <NavLink to="/mon-compte/ma-photo" className="nav-link color-sidebar">Ma photo</NavLink>
               </li>
             </ul>
 
@@ -107,8 +113,13 @@ function SidebarLeft () {
             </Switch>
           </div>
         </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
+
+SidebarLeft.propTypes = {
+  userData: object.isRequired
+};
 
 export default SidebarLeft;

@@ -50,6 +50,7 @@ class Firebase {
     this.auth.sendPasswordResetEmail(email);
   }
 
+  // Create user id
   user = uid => this.db.doc(`users/${uid}`);
 }
 
