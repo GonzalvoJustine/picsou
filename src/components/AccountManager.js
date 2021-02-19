@@ -5,12 +5,12 @@ import React from 'react';
  * Created list of courses
  * @constructor
  */
-function AccountManager() {
-    return (
-        <div>
-            Bubu
-        </div>
-    )
+function AccountManager () {
+  return (
+    <div>
+      Bubu
+    </div>
+  );
 }
 
 export default AccountManager;
