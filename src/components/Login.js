@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { FirebaseContext } from './firebase';
+import { FirebaseContext } from './config';
 
 /**
  * Page de Connexion
@@ -54,7 +54,10 @@ function Login () {
           : <button disabled className="btn btn-dark float-right">Se connecter</button>
         }
       </form>
-      <NavLink to="/inscription" className="link">Nouveau sur Picsou ? Inscrivez-vous maintenant.</NavLink>
+      <div className="d-flex flex-column">
+        <NavLink to="/inscription" className="link">Nouveau sur Picsou ? Inscrivez-vous maintenant.</NavLink>
+        <NavLink to="/oublie-mdp" className="link">Mot de passe oublié ?</NavLink>
+      </div>
     </div>
   );
 

@@ -1,18 +1,13 @@
 import React from 'react';
 import './style/App.scss';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './components/toggleDarkOrLight/theme';
 import { GlobalStyles } from './components/toggleDarkOrLight/global';
 import { useDarkMode } from './components/toggleDarkOrLight/useDarkMode';
 import Toggle from './components/toggleDarkOrLight/Toggle';
 import Nav from './components/Nav';
-import Login from './components/Login';
-import Register from './components/Register';
-import Home from './components/Home';
-import Account from './components/Account';
-import About from './components/About';
-import AccountManager from './components/AccountManager';
+import Router from './components/Router';
 
 /**
  * Display the code of base
@@ -31,28 +26,9 @@ function App () {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <Nav/>
-      <Switch>
-        <Route path='/' exact>
-            <Home/>
-        </Route>
-        <Route path='/mon-compte'>
-            <Account/>
-        </Route>
-        <Route path='/a-propos'>
-            <About/>
-        </Route>
-        <Route path='/mes-depenses'>
-            <AccountManager/>
-        </Route>
-        <Route path='/connexion'>
-            <Login/>
-        </Route>
-        <Route path='/inscription'>
-            <Register/>
-        </Route>
-      </Switch>
+      <Router/>
       <ThemeProvider theme={themeMode}>
         <>
           <GlobalStyles />
@@ -60,7 +36,7 @@ function App () {
           <span>Un thème {theme === 'light' ? 'clair ' : 'foncé '}!</span>
         </>
       </ThemeProvider>
-    </Router>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { FirebaseContext } from './firebase';
+import { FirebaseContext } from './config';
 import logo from '../images/bear.jpg';
 
 /**

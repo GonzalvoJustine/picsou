@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 /**
  * Config Firebase
@@ -22,6 +23,7 @@ class Firebase {
   constructor () {
     app.initializeApp(config);
     this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   // Register
@@ -42,6 +44,13 @@ class Firebase {
       this.auth.onAuthStateChanged(resolve);
     });
   }
+
+  // Get password
+  passwordReset (email) {
+    this.auth.sendPasswordResetEmail(email);
+  }
+
+  user = uid => this.db.doc(`users/${uid}`);
 }
 
 export default Firebase;

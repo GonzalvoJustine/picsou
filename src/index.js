@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/index.scss';
 import App from './App';
-import Firebase, { FirebaseContext } from './components/firebase';
+import Firebase, { FirebaseContext } from './components/config';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';

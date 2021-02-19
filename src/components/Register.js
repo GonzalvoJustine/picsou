@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { FirebaseContext } from './firebase';
+import { FirebaseContext } from './config';
 
 /**
  * Page d'inscription
@@ -29,6 +29,7 @@ function Register () {
   // Initialization of History for redirection
   const history = useHistory();
 
+  // Destructuring
   const { lastname, firstname, email, password, confirmPassword } = loginData;
 
   // Manager error password, display true or false btn
@@ -90,10 +91,17 @@ function Register () {
   function handleSubmit (event) {
     event.preventDefault();
 
-    const { email, password } = loginData;
+    const { email, password, lastname, firstname } = loginData;
 
     firebase.signupUser(email, password)
-      .then(user => {
+      .then(authUser => {
+        return firebase.user(authUser.user.uid).set({
+          lastname: lastname,
+          firstname: firstname,
+          email: email
+        });
+      })
+      .then(() => {
         setLoginData({ ...data });
         history.push('/mon-compte');
       })
