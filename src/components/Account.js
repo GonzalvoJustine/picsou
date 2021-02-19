@@ -39,7 +39,7 @@ function Account () {
     return () => {
       listener();
     };
-  }, [userSession]);
+  }, [userSession, firebase, history]);
   return (
     <div className="container">
       <h1 className="my-5">Mon Compte</h1>
